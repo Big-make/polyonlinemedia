@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poly Online Media - Sports</title>
+
+<!-- Font Awesome for social icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha512-+RjZZywHjOCyIvt+9RwR0kj9kKZspCug5cT8zFmy5CuZJkItbUIHdXZvQsI4LXYwiyzUWRZWr+ZgxTu1I9wa9g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<style>
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00bcd4; /* brand color */
+  padding: 10px 20px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.search-box input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.search-box button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #006064; /* dark blue */
+  color: white;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #007c91;
+}
+
+.auth-buttons button {
+  padding: 8px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #006064; /* dark blue */
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.auth-buttons button:hover {
+  background-color: #007c91;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background-color: #f1f1f1;
+  padding: 10px 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #00bcd4; /* brand color */
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #00bcd4;
+  color: white;
+  transition: 0.3s;
+}
+
+/* Scrolling News */
+.scrolling-news {
+  background: linear-gradient(90deg, #00bcd4, #ffeb3b, #6a1b9a);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin: 20px;
+}
+
+.scrolling-news p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 15s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.scrolling-news:hover p {
+  animation-play-state: paused;
+}
+
+/* News Layout */
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.story {
+  text-align: left;
+  margin-bottom: 30px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.story h4 mark {
+  background-color: #ffeb3b;
+  color: #1a237e;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.story img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #333;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #00bcd4;
+  color: white;
+}
+
+/* Footer */
+footer {
+  background-color: #006064;
+  color: white;
+  padding: 30px 20px 10px 20px;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+/* Social Links */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 15px 0;
+}
+
+.socials a {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.socials a:hover {
+  color: #ffeb3b;
+  transform: scale(1.2);
+}
+
+/* Newsletter */
+.newsletter {
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.newsletter input[type="email"] {
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+}
+
+.newsletter button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #ffeb3b;
+  color: #1a237e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.newsletter button:hover {
+  background-color: #fdd835;
+}
+
+/* Back to Top */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00bcd4;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+}
+
+#backToTop:hover {
+  background-color: #006064;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img src="logo.jpg" alt="Poly Online Media Logo">
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search here...">
+    <button onclick="search()">Search</button>
+  </div>
+
+  <div class="auth-buttons">
+    <button onclick="window.location.href='Register.htm'">Register</button>
+    <button onclick="window.location.href='SignIn.htm'">Sign In</button>
+  </div>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <a href="Home.htm">Home</a>
+  <a href="National.htm">National</a>
+  <a href="Education.htm">Education</a>
+  <a href="Health.htm">Health</a>
+  <a href="Politics.htm">Politics</a>
+  <a href="Entertainment.htm">Entertainment</a>
+  <a href="Religion.htm">Religion</a>
+  <a href="Sports.htm">Sports</a>
+</nav>
+
+<!-- Scrolling News -->
+<div class="scrolling-news">
+  <p>LOCAL AND INTERNATIONAL SPORTS UPDATE</p>
+</div>
+
+<!-- News Section -->
+<section class="container">
+
+  <!-- Local News -->
+  <div class="story">
+    <h4><mark>LOCAL</mark></h4>
+    <h2>FCB Nyasa Big Bullets Are Champions of Airtel Top 8 <a href="#Zamadolo">#Zamadolo</a></h2>
+    <img src="Bullets.jpg" alt="FCB Nyasa Big Bullets">
+    <p>FCB Nyasa Big Bullets have been crowned as 2025 Airtel Top 8 champions...</p>
+
+    <h2>TNM Super League First Round</h2>
+    <p>The 2025/26 TNM Super League first round ended with high competition...</p>
+
+    <h3>TNM SUPER LEAGUE LOG TABLE - WEEK 15</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th>
+          <th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Mighty Wanderers</td><td>15</td><td>10</td><td>5</td><td>0</td><td>23</td><td>7</td><td>16</td><td>35</td></tr>
+        <tr><td>2</td><td>FCB Nyasa Big Bullets</td><td>15</td><td>11</td><td>1</td><td>3</td><td>33</td><td>8</td><td>25</td><td>34</td></tr>
+        <tr><td>3</td><td>Silver Strikers</td><td>15</td><td>8</td><td>6</td><td>1</td><td>25</td><td>11</td><td>14</td><td>30</td></tr>
+        <tr><td>16</td><td>Songwe United</td><td>15</td><td>0</td><td>2</td><td>13</td><td>5</td><td>42</td><td>-37</td><td>2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- International News -->
+  <div class="story">
+    <h4><mark>INTERNATIONAL</mark></h4>
+    <h2>The Premier League Returns: Drama, Surprises, and Triumphs!</h2>
+    <p>The Premier League 2025/26 opened with spectacular games...</p>
+
+    <video controls width="100%" style="border-radius:10px;">
+      <source src="The Official Premier League Anthem (Official Audio).mp4" type="video/mp4">
+    </video>
+
+    <audio controls style="margin-top:10px; width:100%;">
+      <source src="Premier League Theme Song (2019_20).mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+</section>
+
+<!-- Newsletter -->
+<div class="newsletter">
+  <h3>Subscribe to our Newsletter</h3>
+  <input type="email" placeholder="Enter your email">
+  <button>Subscribe</button>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>Follow us:</p>
+  <div class="socials">
+    <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+  </div>
+  <p>&copy; 2025 Poly Online Media</p>
+</footer>
+
+<!-- Back to Top -->
+<button id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  // Search
+  function search() {
+    let query = document.getElementById("searchInput").value;
+    alert("You searched for: " + query);
+  }
+
+  // Back to Top
+  const backToTopBtn = document.getElementById("backToTop");
+  window.onscroll = function() {
+    if(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+  function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+
+</body>
+</html>

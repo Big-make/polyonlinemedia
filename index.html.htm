@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Poly Online Media - Home</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --brand-cyan:#00bcd4;
+      --brand-navy:#1e3a5f;
+    }
+
+    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#fafafa; color:#333;}
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background: var(--brand-cyan);
+      padding:10px 20px;
+      color:#fff;
+      flex-wrap:wrap;
+    }
+    .logo img{width:120px;}
+    .search-box{display:flex; gap:10px; margin:10px 0;}
+    .search-box input{padding:8px; border:1px solid #ccc; border-radius:5px;}
+    .search-box button,.auth-buttons button{
+      padding:8px 15px; border:none; border-radius:5px; background:var(--brand-navy); color:#fff; cursor:pointer; font-weight:bold;
+    }
+    .search-box button:hover,.auth-buttons button:hover{background:#15506e;}
+
+    nav{
+      display:flex; justify-content:center; flex-wrap:wrap; gap:15px;
+      background:#f1f1f1; padding:10px 0;
+    }
+    nav a{text-decoration:none; color:var(--brand-navy); font-weight:bold; padding:5px 10px; border-radius:5px;}
+    nav a:hover{background:var(--brand-cyan); color:#fff; transition:0.3s;}
+
+    .hero{
+      position:relative; background:url('hero.jpg') center/cover no-repeat;
+      height:350px; display:flex; align-items:center; justify-content:center; color:#fff;
+      text-shadow:0 2px 6px rgba(0,0,0,0.7);
+    }
+    .hero h1{font-size:2.5rem; background:rgba(0,0,0,0.4); padding:10px 20px; border-radius:10px;}
+
+    section{padding:30px 20px;}
+    h2{color:var(--brand-navy); margin-bottom:20px; text-align:left;}
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
+    .card{background:#fff; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; text-align:left; transition: transform 0.3s; position:relative;}
+    .card:hover{transform: translateY(-5px);}
+    .card img, .card video{width:100%; height:400px; object-fit:cover;}
+    .card h3{margin:10px; color:var(--brand-cyan);}
+    .card p{margin:0 10px 15px;}
+    .card button{margin:0 10px 10px; padding:8px 12px; background:var(--brand-navy); color:#fff; border:none; border-radius:5px; cursor:pointer;}
+    .card button:hover{background:#15506e;}
+
+    /* Volume button always visible */
+    .volume-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 1;  /* always visible */
+      transition: background 0.3s;  
+    }
+    .volume-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    footer{
+      background:var(--brand-navy);
+      color:#fff;
+      text-align:center;
+      padding:40px 20px;
+      margin-top:40px;
+      border-radius:10px 10px 0 0;
+    }
+
+    .socials{display:flex; justify-content:center; gap:30px; margin:15px 0;}
+    .socials a{color:#fff; font-size:24px; text-decoration:none;}
+    .socials a:hover{color:var(--brand-cyan); transform: scale(1.2); transition:0.3s;}
+
+    .footer-newsletter {margin-top:30px;}
+    .footer-newsletter p {font-family: Arial, sans-serif; font-weight: bold; text-align: center; margin-bottom: 15px;}
+    .footer-newsletter div {display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;}
+    .footer-newsletter input {padding: 12px; border: none; border-radius: 5px; width: 250px; max-width: 100%;}
+    .footer-newsletter button {padding: 12px 25px; border: none; border-radius: 5px; background: var(--brand-cyan); color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s;}
+    .footer-newsletter button:hover {background: #00a3c1; transform: scale(1.05);}
+
+    #backToTop {position: fixed; bottom: 40px; right: 40px; display: none; background: var(--brand-cyan); color: #fff; border: none; padding: 16px 20px; border-radius: 50px; cursor: pointer; font-size: 20px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 1000; transition: transform 0.3s, background 0.3s;}
+    #backToTop:hover {background: #00a3c1; transform: scale(1.2);}
+
+    .modal {display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center;}
+    .modal-content {background-color: #fff; padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; position: relative;}
+    .modal-content h2 {margin-bottom: 20px; color: var(--brand-navy);}
+    .modal-content input {width: 80%; padding: 12px; margin: 10px 0; border-radius: 5px; border:1px solid #ccc;}
+    .modal-content button {padding: 10px 20px; margin-top: 10px; border:none; border-radius:5px; background: var(--brand-cyan); color:#fff; font-weight:bold; cursor:pointer;}
+    .modal-content button:hover {background:#00a3c1;}
+    .close {position:absolute; top:10px; right:15px; font-size:25px; cursor:pointer; color:#333;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><img src="logo.jpg" alt="Poly Online Media"></div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="search()">Search</button>
+  </div>
+  <div class="auth-buttons">
+    <button onclick="openModal('registerModal')">Register</button>
+    <button onclick="openModal('signInModal')">Sign In</button>
+  </div>
+</header>
+
+
+<nav>
+<a href="home.htm">Home</a>
+<a href="national.htm">National</a>
+<a href="education.htm">Education</a>
+<a href="healthmhtm">Health</a>
+<a href="politics.htm">Politics</a>
+<a href="ENTERTAINMENT.htm">Entertainment</a>
+<a href="religion.htm">Religion</a>
+<a href="sports.htm">Sports</a>
+</nav>
+
+
+<section>
+  <h2>🌟 Featured Stories</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="elections.jpg" alt="">
+      <h3>Malawi Presidential Election</h3>
+      <p id="story1-short">The presidential election is closely contested...</p>
+      <p id="story1-full" style="display:none;">Malawi recently held its presidential election, with both major parties claiming victory. Citizens await official results.</p>
+      <button onclick="toggleStory('story1-short','story1-full',this)">Read more</button>
+    </div>
+    <div class="card">
+      <img src="Dzaleka.jpg" alt="">
+      <h3>Dzaleka Refugee Camp Crisis</h3>
+      <p id="story2-short">The refugee camp faces humanitarian challenges...</p>
+      <p id="story2-full" style="display:none;">The Dzaleka refugee camp is home to over 58,000 people. NGOs and government bodies are providing emergency assistance.</p>
+      <button onclick="toggleStory('story2-short','story2-full',this)">Read more</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>📰 Latest News</h2>
+  <div class="grid">
+    <div class="card">
+      <video src="zikomo.mp4" loop playsinline muted></video>
+      <button class="volume-btn">🔇</button>
+      <h3>Zikomo Awards 2025</h3>
+      <p id="story3-short">Celebrating individuals and organizations for achievements in Malawi...</p>
+      <p id="story3-full" style="display:none;">The Zikomo Presidential Awards ceremony honored outstanding individuals in entertainment, philanthropy, and community service.</p>
+      <button onclick="toggleStory('story3-short','story3-full',this)">Read more</button>
+    </div>
+    <div class="card">
+      <img src="economy.jpg" alt="">
+      <h3>Economic Challenges in Malawi</h3>
+      <p id="story4-short">High inflation and fuel shortages impact citizens...</p>
+      <p id="story4-full" style="display:none;">Malawi faces rising inflation and fuel shortages. Government initiatives aim to stabilize the economy.</p>
+      <button onclick="toggleStory('story4-short','story4-full',this)">Read more</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🔥 Trending Now</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Trending Topic 1: Social Media Impact</h3>
+      <p id="trend1-short">Social media usage is increasing rapidly in Malawi...</p>
+      <p id="trend1-full" style="display:none;">Social media platforms have become major tools for news, marketing, and social interaction. Citizens use them to voice opinions and connect communities.</p>
+      <button onclick="toggleStory('trend1-short','trend1-full',this)">Read more</button>
+    </div>
+    <div class="card">
+      <h3>Trending Topic 2: Youth Entrepreneurship</h3>
+      <p id="trend2-short">Young entrepreneurs are driving innovation across Malawi...</p>
+      <p id="trend2-full" style="display:none;">Many youths are starting tech, agriculture, and small business ventures, contributing to employment and economic growth.</p>
+      <button onclick="toggleStory('trend2-short','trend2-full',this)">Read more</button>
+    </div>
+    <div class="card">
+      <h3>Trending Topic 3: Climate Change Effects</h3>
+      <p id="trend3-short">Malawi faces climate-related challenges impacting agriculture...</p>
+      <p id="trend3-full" style="display:none;">Erratic rainfall and droughts have affected crop production. Farmers and government agencies are adopting new strategies to mitigate impacts.</p>
+      <button onclick="toggleStory('trend3-short','trend3-full',this)">Read more</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-newsletter">
+    <p>Subscribe to Our Newsletter</p>
+    <div>
+      <input type="email" placeholder="Enter your email" id="newsletter-email">
+      <button onclick="subscribeNewsletter()">Subscribe</button>
+    </div>
+  </div>
+
+  <p>Follow us:</p>
+  <div class="socials">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <p>&copy; 2025 POLY ONLINE MEDIA</p>
+</footer>
+
+<button id="backToTop" onclick="scrollToTop()">↑ Top</button>
+
+<div id="signInModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signInModal')">&times;</span>
+    <h2>Sign In</h2>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="alert('Signed in successfully!')">Sign In</button>
+  </div>
+</div>
+
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('registerModal')">&times;</span>
+    <h2>Register</h2>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="alert('Registered successfully!')">Register</button>
+  </div>
+</div>
+
+<script>
+  function search() {
+    let q=document.getElementById("searchInput").value;
+    alert("You searched: " + q);
+  }
+
+  function toggleStory(shortId, fullId, btn){
+    const shortPara = document.getElementById(shortId);
+    const fullPara = document.getElementById(fullId);
+    if(fullPara.style.display === "none"){
+      fullPara.style.display = "block";
+      shortPara.style.display = "none";
+      btn.textContent = "Read less";
+    } else {
+      fullPara.style.display = "none";
+      shortPara.style.display = "block";
+      btn.textContent = "Read more";
+    }
+  }
+
+  function subscribeNewsletter() {
+    let email = document.getElementById("newsletter-email").value;
+    if(email) {
+      alert("Thank you for subscribing with " + email + "!");
+      document.getElementById("newsletter-email").value = "";
+    } else {
+      alert("Please enter a valid email address.");
+    }
+  }
+
+  const backToTopBtn = document.getElementById("backToTop");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+  function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+  function openModal(id){ document.getElementById(id).style.display = "flex"; }
+  function closeModal(id){ document.getElementById(id).style.display = "none"; }
+  window.onclick = function(event){ if(event.target.classList.contains('modal')){ event.target.style.display = "none"; } }
+
+  // Video autoplay with visible mute/unmute button
+  document.addEventListener("DOMContentLoaded", function() {
+    const video = document.querySelector(".card video");
+    const volBtn = document.querySelector(".volume-btn");
+
+    video.play().catch(()=>console.log("Autoplay muted"));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          video.play().catch(()=>console.log("Autoplay muted"));
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(video);
+
+    volBtn.addEventListener("click", () => {
+      if(video.muted){
+        video.muted = false;
+        volBtn.textContent = "🔊";
+      } else {
+        video.muted = true;
+        volBtn.textContent = "🔇";
+      }
+    });
+  });
+</script>
+</body>
+</html>
